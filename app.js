@@ -34,9 +34,9 @@ function initCoffeeSupport() {
   const coffee = document.querySelector('.coffee-float');
   if (!coffee) return;
   coffee.style.setProperty('position', 'fixed', 'important');
-  coffee.style.setProperty('left', '1rem', 'important');
-  coffee.style.setProperty('right', 'auto', 'important');
-  coffee.style.setProperty('bottom', '1rem', 'important');
+  coffee.style.setProperty('right', '1rem', 'important');
+  coffee.style.setProperty('left', 'auto', 'important');
+  coffee.style.setProperty('bottom', '5.6rem', 'important');
   coffee.style.setProperty('z-index', '2147483000', 'important');
   coffee.style.setProperty('display', 'inline-flex', 'important');
   coffee.style.setProperty('visibility', 'visible', 'important');

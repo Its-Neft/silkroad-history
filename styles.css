@@ -1928,9 +1928,9 @@ code, pre {
 
 .coffee-float {
   position: fixed;
-  left: 1.25rem;
-  right: auto;
-  bottom: 1.25rem;
+  right: 1.25rem;
+  left: auto;
+  bottom: 5.6rem;
   z-index: 2147483000;
   display: inline-flex;
   align-items: center;
@@ -1976,9 +1976,9 @@ code, pre {
 
 @media (max-width: 640px) {
   .coffee-float {
-    left: 0.78rem;
-    right: auto;
-    bottom: 0.78rem;
+    right: 0.78rem;
+    left: auto;
+    bottom: 5.1rem;
     min-height: 40px;
     padding: 0.55rem 0.68rem;
     z-index: 2147483000;
