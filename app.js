@@ -56,6 +56,19 @@ function initCoffeeSupport() {
   coffee.style.setProperty('pointer-events', 'auto', 'important');
   document.body.appendChild(coffee);
 
+  const keepCoffeeInViewport = () => {
+    if (!localStorage.getItem('sro_coffee_position_v2')) return;
+    const rect = coffee.getBoundingClientRect();
+    const left = Math.max(6, Math.min(window.innerWidth - coffee.offsetWidth - 6, rect.left));
+    const top = Math.max(6, Math.min(window.innerHeight - coffee.offsetHeight - 6, rect.top));
+    coffee.style.setProperty('left', `${left}px`, 'important');
+    coffee.style.setProperty('top', `${top}px`, 'important');
+    coffee.style.setProperty('right', 'auto', 'important');
+    coffee.style.setProperty('bottom', 'auto', 'important');
+    localStorage.setItem('sro_coffee_position_v2', JSON.stringify({ left: Math.round(left), top: Math.round(top) }));
+  };
+  window.addEventListener('resize', keepCoffeeInViewport, { passive: true });
+
   let dragging = false; let moved = false; let suppressClick = false; let offsetX = 0; let offsetY = 0;
   coffee.addEventListener('pointerdown', (event) => {
     const rect = coffee.getBoundingClientRect();
