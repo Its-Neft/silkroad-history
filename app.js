@@ -72,9 +72,11 @@ function initLanguageSwitcher() {
     '#sec-20': '20. Audiovisual Archive and Videos'
   };
 
-  const applyFullEnglishContent = async () => {
+  const applyFullLanguageContent = async (language) => {
     try {
-      const response = await fetch('assets/history/english-content.json');
+      const packName = { en: 'english-content.json', tr: 'turkish-content.json', ar: 'arabic-content.json', de: 'german-content.json' }[language];
+      if (!packName) return;
+      const response = await fetch(`assets/history/${packName}`);
       const dictionary = await response.json();
       const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
       const nodes = [];
@@ -104,18 +106,16 @@ function initLanguageSwitcher() {
         el.textContent = dict ? englishText : el.dataset.originalText;
       });
     });
-    if (language !== 'en' && language !== 'es') {
-      select.value = 'es';
-      showToast('Este idioma se incorporará en la siguiente entrega');
-      return;
-    }
     localStorage.setItem('sro_language', language);
-    if (language === 'en') await applyFullEnglishContent();
+    await applyFullLanguageContent(language);
   };
 
   const saved = localStorage.getItem('sro_language');
   if (saved === 'en') { select.value = 'en'; apply('en'); }
-  select.addEventListener('change', () => apply(select.value));
+  select.addEventListener('change', () => {
+    localStorage.setItem('sro_language', select.value);
+    window.location.reload();
+  });
 }
 
 function initBackgroundSand() {
