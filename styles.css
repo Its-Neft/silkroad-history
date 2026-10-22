@@ -1987,6 +1987,18 @@ code, pre {
   stroke-linejoin: round;
 }
 
+.coffee-steam {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center bottom;
+  animation: coffeeSteam 2.4s ease-in-out infinite;
+}
+.coffee-steam.steam-two { animation-delay: 1.15s; }
+@keyframes coffeeSteam {
+  0%, 100% { opacity: 0; transform: translateY(2px) scale(.82); }
+  35%, 65% { opacity: .82; transform: translateY(-1px) scale(1); }
+}
+
 .coffee-float-label { display: none !important; }
 
 @media (max-width: 640px) {
@@ -2004,7 +2016,7 @@ code, pre {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .coffee-float { transition: none; }
+  .coffee-float, .coffee-steam { transition: none; animation: none; }
 }
 
 [data-theme="light"] .back-to-top-btn {
