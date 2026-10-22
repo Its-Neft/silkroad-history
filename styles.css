@@ -591,6 +591,36 @@ code, pre {
   gap: 0.6rem;
 }
 
+.language-switcher {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 0.2rem;
+}
+
+.language-switcher select {
+  min-width: 7.4rem;
+  padding: 0.38rem 1.65rem 0.38rem 0.58rem;
+  border: 1px solid var(--gold-hairline);
+  border-radius: 4px;
+  background: var(--bg-surface-elevated);
+  color: var(--text-secondary);
+  font: 600 0.68rem var(--font-mono);
+  letter-spacing: 0.02em;
+  cursor: pointer;
+}
+
+.language-switcher select:focus-visible {
+  outline: 2px solid var(--gold-primary);
+  outline-offset: 2px;
+}
+
+@media (max-width: 760px) {
+  .language-switcher select {
+    min-width: 6.3rem;
+    font-size: 0.62rem;
+  }
+}
+
 .nav-brand-tag {
   font-size: 0.7rem;
   text-transform: uppercase;

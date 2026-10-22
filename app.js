@@ -5,6 +5,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   initThemeSystem();
+  initLanguageSwitcher();
   initProgressBar();
   initScrollDirection();
   initScrollSpy();
@@ -26,6 +27,72 @@ document.addEventListener('DOMContentLoaded', () => {
   initBackgroundSand();
   requestAnimationFrame(() => document.documentElement.classList.remove('theme-preload'));
 });
+
+// 0. Selector de idioma progresivo (se incorpora un idioma por entrega)
+function initLanguageSwitcher() {
+  const select = document.getElementById('languageSelect');
+  if (!select) return;
+
+  const english = {
+    '[data-i18n="brand"]': 'Historical Archive',
+    '#searchInput': 'Search the entire archive…',
+    '#themeToggleBtn .btn-text': 'Light mode',
+    '#globalAccordionToggle .btn-text': 'Expand all',
+    '#toggleReadingMode .btn-text': 'Reading mode',
+    'a[href="#diccionario-acronimos"] .btn-text': 'Acronyms',
+    'a[href="#archivo-audiovisual"] .btn-text': 'Videos',
+    'a[href="#dossier-personajes"] .btn-text': 'Characters',
+    'a[href="#hemeroteca"] .btn-text': 'Sources',
+    '.sidebar-title span:first-child': 'Table of contents',
+    '.sidebar-title span:last-child': '20 ch.',
+    '.hero-badge:nth-child(1)': 'Historical research',
+    '.hero-badge:nth-child(3)': 'File preservation',
+    '.hero-badge:nth-child(4)': 'WEMADE MAX / Joymax',
+    '.hero-card h1': 'Silkroad Online: The True Chronicle and Technical Archive',
+    '.hero-subtitle': 'The complete, uncensored history: from its conception in South Korea and the triangular conflict system to official server geopolitics, handcrafted emulation, the 2011 vSRO leak and the mystery of the original source code.',
+    '#sec-1': '1. Executive Summary and Methodology',
+    '#sec-2': '2. The Origin: Joymax and the Vision',
+    '#sec-3': '3. Official Servers and Licenses',
+    '#sec-4': '4. Evolution: Caps, Legends and SRO-R',
+    '#sec-5': '5. Master Timeline 2004–2026',
+    '#sec-6': '6. Acronym Dictionary',
+    '#sec-7': '7. Technical Anatomy: PK2 and Servers',
+    '#sec-8': '8. The Emulation Era (2005–2010)',
+    '#sec-9': '9. Proxies, SR33 and pushedx',
+    '#sec-10': '10. The First Private Servers',
+    '#sec-11': '11. The vSRO Earthquake (September 2011)',
+    '#sec-12': '12. SWSRO Files Released (November 2011)',
+    '#sec-13': '13. Famous Bugs and Exploits',
+    '#sec-14': '14. The SRC Mystery and MeGaMaX',
+    '#sec-15': '15. The Private Server Scene (2012–2026)',
+    '#sec-16': '16. Key Figures Dossier',
+    '#sec-17': '17. Silkroad 2 and Community Contributions',
+    '#sec-18': '18. Open Preservation Questions',
+    '#sec-19': '19. Press Archive and Consolidated Links',
+    '#sec-20': '20. Audiovisual Archive and Videos'
+  };
+
+  const apply = (language) => {
+    const dict = language === 'en' ? english : null;
+    document.documentElement.lang = language;
+    Object.entries(english).forEach(([selector, englishText]) => {
+      document.querySelectorAll(selector).forEach((el) => {
+        if (!el.dataset.originalText) el.dataset.originalText = el.textContent;
+        el.textContent = dict ? englishText : el.dataset.originalText;
+      });
+    });
+    if (language !== 'en' && language !== 'es') {
+      select.value = 'es';
+      showToast('Este idioma se incorporará en la siguiente entrega');
+      return;
+    }
+    localStorage.setItem('sro_language', language);
+  };
+
+  const saved = localStorage.getItem('sro_language');
+  if (saved === 'en') { select.value = 'en'; apply('en'); }
+  select.addEventListener('change', () => apply(select.value));
+}
 
 function initBackgroundSand() {
   const canvas = document.getElementById('backgroundSandCanvas');
