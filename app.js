@@ -25,8 +25,23 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollReveal();
   initBackToTop();
   initBackgroundSand();
+  initCoffeeSupport();
   requestAnimationFrame(() => document.documentElement.classList.remove('theme-preload'));
 });
+
+// Mantiene el enlace de apoyo por encima de controles flotantes creados dinámicamente.
+function initCoffeeSupport() {
+  const coffee = document.querySelector('.coffee-float');
+  if (!coffee) return;
+  coffee.style.setProperty('position', 'fixed', 'important');
+  coffee.style.setProperty('right', '1rem', 'important');
+  coffee.style.setProperty('bottom', '5.25rem', 'important');
+  coffee.style.setProperty('z-index', '2000', 'important');
+  coffee.style.setProperty('display', 'inline-flex', 'important');
+  coffee.style.setProperty('visibility', 'visible', 'important');
+  coffee.style.setProperty('opacity', '1', 'important');
+  document.body.appendChild(coffee);
+}
 
 // 0. Selector de idioma progresivo (se incorpora un idioma por entrega)
 function initLanguageSwitcher() {
