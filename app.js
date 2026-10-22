@@ -72,7 +72,30 @@ function initLanguageSwitcher() {
     '#sec-20': '20. Audiovisual Archive and Videos'
   };
 
-  const apply = (language) => {
+  const applyFullEnglishContent = async () => {
+    try {
+      const response = await fetch('assets/history/english-content.json');
+      const dictionary = await response.json();
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+      const nodes = [];
+      let node;
+      while ((node = walker.nextNode())) {
+        const parent = node.parentElement;
+        if (!parent || ['SCRIPT', 'STYLE', 'CODE', 'SVG'].includes(parent.tagName)) continue;
+        const normalized = node.nodeValue.trim().replace(/\s+/g, ' ');
+        if (dictionary[normalized]) nodes.push({ node, normalized });
+      }
+      nodes.forEach(({ node, normalized }) => {
+        const leading = node.nodeValue.match(/^\s*/)?.[0] || '';
+        const trailing = node.nodeValue.match(/\s*$/)?.[0] || '';
+        node.nodeValue = leading + dictionary[normalized] + trailing;
+      });
+    } catch (error) {
+      console.warn('English content pack unavailable', error);
+    }
+  };
+
+  const apply = async (language) => {
     const dict = language === 'en' ? english : null;
     document.documentElement.lang = language;
     Object.entries(english).forEach(([selector, englishText]) => {
@@ -87,6 +110,7 @@ function initLanguageSwitcher() {
       return;
     }
     localStorage.setItem('sro_language', language);
+    if (language === 'en') await applyFullEnglishContent();
   };
 
   const saved = localStorage.getItem('sro_language');
