@@ -1929,7 +1929,7 @@ code, pre {
 .coffee-float {
   position: fixed;
   right: 1.25rem;
-  bottom: 1.25rem;
+  bottom: 4.8rem;
   z-index: 1100;
   display: inline-flex;
   align-items: center;
@@ -1976,7 +1976,7 @@ code, pre {
 @media (max-width: 640px) {
   .coffee-float {
     right: 0.78rem;
-    bottom: 0.78rem;
+    bottom: 4.55rem;
     min-height: 40px;
     padding: 0.55rem 0.68rem;
     z-index: 10000;
