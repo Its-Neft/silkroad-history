@@ -1948,7 +1948,7 @@ code, pre {
   cursor: grab;
   touch-action: none;
   user-select: none;
-  transition: transform 180ms ease, filter 180ms ease;
+  transition: transform 180ms ease, filter 180ms ease, background 180ms ease;
   visibility: visible !important;
   opacity: 1 !important;
 }
@@ -1958,6 +1958,7 @@ code, pre {
   color: var(--gold-light);
   transform: scale(1.12);
   filter: saturate(1.12);
+  background: color-mix(in srgb, var(--gold-primary) 16%, transparent);
 }
 
 .coffee-float.is-dragging { cursor: grabbing; transform: scale(1.08); }
@@ -1973,9 +1974,20 @@ code, pre {
   width: 100%;
   height: 100%;
   background: transparent;
-  font-size: 1.75rem;
   line-height: 1;
 }
+
+.coffee-float-icon svg {
+  width: 25px;
+  height: 25px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.55;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.coffee-float-label { display: none !important; }
 
 @media (max-width: 640px) {
   .coffee-float {

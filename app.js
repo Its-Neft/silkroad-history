@@ -56,7 +56,7 @@ function initCoffeeSupport() {
   coffee.style.setProperty('pointer-events', 'auto', 'important');
   document.body.appendChild(coffee);
 
-  let dragging = false; let moved = false; let offsetX = 0; let offsetY = 0;
+  let dragging = false; let moved = false; let suppressClick = false; let offsetX = 0; let offsetY = 0;
   coffee.addEventListener('pointerdown', (event) => {
     const rect = coffee.getBoundingClientRect();
     dragging = true; moved = false; offsetX = event.clientX - rect.left; offsetY = event.clientY - rect.top;
@@ -72,9 +72,12 @@ function initCoffeeSupport() {
   });
   coffee.addEventListener('pointerup', (event) => {
     if (!dragging) return; dragging = false; coffee.classList.remove('is-dragging'); coffee.releasePointerCapture?.(event.pointerId);
-    if (moved) { const rect = coffee.getBoundingClientRect(); localStorage.setItem('sro_coffee_position', JSON.stringify({ left: Math.round(rect.left), top: Math.round(rect.top) })); }
+    if (moved) { const rect = coffee.getBoundingClientRect(); localStorage.setItem('sro_coffee_position', JSON.stringify({ left: Math.round(rect.left), top: Math.round(rect.top) })); suppressClick = true; }
   });
   coffee.addEventListener('pointercancel', () => { dragging = false; coffee.classList.remove('is-dragging'); });
+  coffee.addEventListener('click', (event) => {
+    if (suppressClick) { event.preventDefault(); event.stopPropagation(); suppressClick = false; }
+  }, true);
 }
 
 // 0. Selector de idioma progresivo (se incorpora un idioma por entrega)
