@@ -157,7 +157,7 @@ function initLanguageSwitcher() {
       let node;
       while ((node = walker.nextNode())) {
         const parent = node.parentElement;
-        if (!parent || ['SCRIPT', 'STYLE', 'CODE', 'SVG'].includes(parent.tagName)) continue;
+        if (!parent || ['SCRIPT', 'STYLE', 'CODE', 'SVG', 'OPTION', 'SELECT'].includes(parent.tagName) || parent.closest('.language-switcher')) continue;
         const normalized = node.nodeValue.trim().replace(/\s+/g, ' ');
         if (dictionary[normalized]) nodes.push({ node, normalized });
       }
