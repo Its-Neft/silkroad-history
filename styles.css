@@ -1928,9 +1928,10 @@ code, pre {
 
 .coffee-float {
   position: fixed;
-  right: 1.25rem;
-  bottom: 4.8rem;
-  z-index: 1100;
+  left: 1.25rem;
+  right: auto;
+  bottom: 1.25rem;
+  z-index: 2147483000;
   display: inline-flex;
   align-items: center;
   gap: 0.52rem;
@@ -1975,15 +1976,18 @@ code, pre {
 
 @media (max-width: 640px) {
   .coffee-float {
-    right: 0.78rem;
-    bottom: 4.55rem;
+    left: 0.78rem;
+    right: auto;
+    bottom: 0.78rem;
     min-height: 40px;
     padding: 0.55rem 0.68rem;
-    z-index: 10000;
+    z-index: 2147483000;
   }
 
   .coffee-float-label {
-    display: none;
+    display: inline;
+    white-space: nowrap;
+    font-size: .68rem;
   }
 }
 

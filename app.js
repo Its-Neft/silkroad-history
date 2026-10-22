@@ -34,12 +34,14 @@ function initCoffeeSupport() {
   const coffee = document.querySelector('.coffee-float');
   if (!coffee) return;
   coffee.style.setProperty('position', 'fixed', 'important');
-  coffee.style.setProperty('right', '1rem', 'important');
-  coffee.style.setProperty('bottom', '5.25rem', 'important');
-  coffee.style.setProperty('z-index', '2000', 'important');
+  coffee.style.setProperty('left', '1rem', 'important');
+  coffee.style.setProperty('right', 'auto', 'important');
+  coffee.style.setProperty('bottom', '1rem', 'important');
+  coffee.style.setProperty('z-index', '2147483000', 'important');
   coffee.style.setProperty('display', 'inline-flex', 'important');
   coffee.style.setProperty('visibility', 'visible', 'important');
   coffee.style.setProperty('opacity', '1', 'important');
+  coffee.style.setProperty('pointer-events', 'auto', 'important');
   document.body.appendChild(coffee);
 }
 
@@ -84,7 +86,16 @@ function initLanguageSwitcher() {
     '#sec-17': '17. Silkroad 2 and Community Contributions',
     '#sec-18': '18. Open Preservation Questions',
     '#sec-19': '19. Press Archive and Consolidated Links',
-    '#sec-20': '20. Audiovisual Archive and Videos'
+    '#sec-20': '20. Audiovisual Archive and Videos',
+    '.coffee-float-label': 'Buy me a coffee'
+  };
+
+  const coffeeLabels = {
+    es: 'Invítame a un café',
+    en: 'Buy me a coffee',
+    tr: 'Bana bir kahve ısmarla',
+    ar: 'ادعمني بفنجان قهوة',
+    de: 'Lade mich auf einen Kaffee ein'
   };
 
   const applyFullLanguageContent = async (language) => {
@@ -122,6 +133,10 @@ function initLanguageSwitcher() {
         el.textContent = dict ? englishText : el.dataset.originalText;
       });
     });
+    const coffeeLabel = document.querySelector('.coffee-float-label');
+    const coffeeLink = document.querySelector('.coffee-float');
+    if (coffeeLabel) coffeeLabel.textContent = coffeeLabels[language] || coffeeLabels.es;
+    if (coffeeLink) coffeeLink.setAttribute('aria-label', coffeeLabels[language] || coffeeLabels.es);
     localStorage.setItem('sro_language', language);
     await applyFullLanguageContent(language);
   };
