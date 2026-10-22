@@ -112,9 +112,13 @@ function initLanguageSwitcher() {
   };
 
   const saved = localStorage.getItem('sro_language');
-  if (saved === 'en') { select.value = 'en'; apply('en'); }
+  const supported = new Set(['es', 'en', 'tr', 'ar', 'de']);
+  const initialLanguage = supported.has(saved) ? saved : select.value || 'es';
+  select.value = initialLanguage;
+  apply(initialLanguage);
   select.addEventListener('change', () => {
-    localStorage.setItem('sro_language', select.value);
+    const language = supported.has(select.value) ? select.value : 'es';
+    localStorage.setItem('sro_language', language);
     window.location.reload();
   });
 }

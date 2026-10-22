@@ -1945,6 +1945,8 @@ code, pre {
   letter-spacing: 0.025em;
   text-decoration: none;
   transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 .coffee-float:hover,
@@ -1977,6 +1979,7 @@ code, pre {
     bottom: 0.78rem;
     min-height: 40px;
     padding: 0.55rem 0.68rem;
+    z-index: 10000;
   }
 
   .coffee-float-label {
