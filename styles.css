@@ -3606,3 +3606,20 @@ html { scroll-padding-top: 7.25rem; }
 @media (min-width: 1121px) {
   .mobile-nav-drawer { display: none; }
 }
+
+/* Cuerpo editorial uniforme en todos los idiomas y tamaños de pantalla. */
+:where(.article-section, .callout-box, .apa-abstract-box, .person-card,
+  .acronym-body, .timeline-item, .modal-content, .summary-box,
+  .evidence-legend-item) :where(p, li, td, dd, blockquote) {
+  text-align: justify !important;
+  text-align-last: auto !important;
+  text-justify: inter-word !important;
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+[dir="rtl"] :where(.article-section, .callout-box, .apa-abstract-box,
+  .person-card, .acronym-body, .timeline-item, .modal-content,
+  .summary-box, .evidence-legend-item) :where(p, li, td, dd, blockquote) {
+  text-align-last: right !important;
+}
