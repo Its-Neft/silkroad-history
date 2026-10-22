@@ -1168,6 +1168,12 @@ function initThemeSystem() {
 
 // 11. Progressive Disclosure y Acordeones por Capítulos
 function initProgressiveDisclosure() {
+  // La lectura queda abierta de forma permanente; no se crean controles de acordeón.
+  document.querySelectorAll('.chapter-collapsible-content').forEach((content) => {
+    content.classList.remove('collapsed');
+    content.setAttribute('aria-hidden', 'false');
+  });
+  document.querySelectorAll('.chapter-toggle-btn, #globalAccordionToggle').forEach((button) => button.remove());
   const toggleBtns = document.querySelectorAll('.chapter-toggle-btn');
   const globalBtn = document.getElementById('globalAccordionToggle');
 

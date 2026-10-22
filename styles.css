@@ -362,6 +362,20 @@ li {
   display: none;
 }
 
+/* La lectura es continua: los capítulos permanecen abiertos y no muestran
+   controles de contraer o desplegar. */
+.chapter-collapsible-content.collapsed {
+  display: block;
+  max-height: 20000px;
+  opacity: 1;
+  visibility: visible;
+  margin-top: 1.5rem;
+  pointer-events: auto;
+}
+.chapter-toggle-btn,
+#globalAccordionToggle { display: none !important; }
+.chapter-collapsible-content:not(.chapter-revealed) { animation: none !important; }
+
 /* Señal breve de orientación al abrir una investigación extensa. */
 .chapter-collapsible-content:not(.collapsed) {
   animation: chapterReveal 420ms cubic-bezier(.22, .61, .36, 1) both;
