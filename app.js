@@ -100,6 +100,7 @@ function initLanguageSwitcher() {
   const apply = async (language) => {
     const dict = language === 'en' ? english : null;
     document.documentElement.lang = language;
+    document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
     Object.entries(english).forEach(([selector, englishText]) => {
       document.querySelectorAll(selector).forEach((el) => {
         if (!el.dataset.originalText) el.dataset.originalText = el.textContent;
