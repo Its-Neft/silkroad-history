@@ -3583,3 +3583,19 @@ html { scroll-padding-top: 7.25rem; }
   .nav-controls #themeToggleBtn, .nav-mobile-btn { width: 34px; height: 34px; }
   .mobile-nav-drawer { top: 58px; }
 }
+
+/* El drawer debe seguir en el árbol de renderizado para que la transición
+   funcione; se oculta con visibilidad y no con display:none. */
+@media (max-width: 1120px) {
+  .mobile-nav-drawer {
+    display: block;
+    visibility: hidden;
+  }
+  .mobile-nav-drawer.active {
+    display: block;
+    visibility: visible;
+  }
+}
+@media (min-width: 1121px) {
+  .mobile-nav-drawer { display: none; }
+}
