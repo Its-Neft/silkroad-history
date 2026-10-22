@@ -34,7 +34,7 @@ function initCoffeeSupport() {
   const coffee = document.querySelector('.coffee-float');
   if (!coffee) return;
   coffee.style.setProperty('position', 'fixed', 'important');
-  const stored = localStorage.getItem('sro_coffee_position');
+  const stored = localStorage.getItem('sro_coffee_position_v2');
   if (stored) {
     try {
       const position = JSON.parse(stored);
@@ -42,7 +42,7 @@ function initCoffeeSupport() {
       coffee.style.setProperty('top', `${position.top}px`, 'important');
       coffee.style.setProperty('right', 'auto', 'important');
       coffee.style.setProperty('bottom', 'auto', 'important');
-    } catch { localStorage.removeItem('sro_coffee_position'); }
+    } catch { localStorage.removeItem('sro_coffee_position_v2'); }
   }
   if (!stored) {
     coffee.style.setProperty('right', '1rem', 'important');
@@ -72,7 +72,7 @@ function initCoffeeSupport() {
   });
   coffee.addEventListener('pointerup', (event) => {
     if (!dragging) return; dragging = false; coffee.classList.remove('is-dragging'); coffee.releasePointerCapture?.(event.pointerId);
-    if (moved) { const rect = coffee.getBoundingClientRect(); localStorage.setItem('sro_coffee_position', JSON.stringify({ left: Math.round(rect.left), top: Math.round(rect.top) })); suppressClick = true; }
+    if (moved) { const rect = coffee.getBoundingClientRect(); localStorage.setItem('sro_coffee_position_v2', JSON.stringify({ left: Math.round(rect.left), top: Math.round(rect.top) })); suppressClick = true; }
   });
   coffee.addEventListener('pointercancel', () => { dragging = false; coffee.classList.remove('is-dragging'); });
   coffee.addEventListener('click', (event) => {

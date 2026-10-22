@@ -1697,8 +1697,8 @@ code, pre {
 
 .video-play-btn {
   position: absolute;
-  width: 44px;
-  height: 44px;
+  width: 50px;
+  height: 50px;
   background: rgba(197, 160, 89, 0.9);
   border-radius: 50%;
   display: flex;
@@ -1940,9 +1940,9 @@ code, pre {
   padding: 0;
   border: 0;
   border-radius: 50%;
-  background: transparent;
-  color: var(--gold-primary);
-  box-shadow: none;
+  background: rgba(255, 247, 218, .88);
+  color: #8b5b12;
+  box-shadow: 0 5px 18px rgba(71, 43, 12, .24), 0 0 0 6px rgba(255, 247, 218, .2);
   font: inherit;
   text-decoration: none;
   cursor: grab;
@@ -1958,7 +1958,8 @@ code, pre {
   color: var(--gold-light);
   transform: scale(1.12);
   filter: saturate(1.12);
-  background: color-mix(in srgb, var(--gold-primary) 16%, transparent);
+  background: rgba(255, 239, 179, .98);
+  box-shadow: 0 7px 22px rgba(71, 43, 12, .3), 0 0 0 7px rgba(255, 247, 218, .28);
 }
 
 .coffee-float.is-dragging { cursor: grabbing; transform: scale(1.08); }
@@ -1978,8 +1979,8 @@ code, pre {
 }
 
 .coffee-float-icon svg {
-  width: 25px;
-  height: 25px;
+  width: 29px;
+  height: 29px;
   fill: none;
   stroke: currentColor;
   stroke-width: 1.55;
@@ -2005,8 +2006,8 @@ code, pre {
   .coffee-float {
     right: 0.78rem;
     bottom: 5.1rem;
-    width: 42px;
-    height: 42px;
+    width: 46px;
+    height: 46px;
     z-index: 2147483000;
   }
 
