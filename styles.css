@@ -3635,3 +3635,28 @@ html { scroll-padding-top: 7.25rem; }
   .summary-box, .evidence-legend-item) :where(p, li, td, dd, blockquote) {
   text-align-last: right !important;
 }
+
+/* Acordeón estable: evita el salto que provocaba display:none al recalcular
+   la altura completa de la página. */
+.chapter-collapsible-content {
+  display: block;
+  max-height: 20000px;
+  opacity: 1;
+  visibility: visible;
+  margin-top: 1.5rem;
+  overflow: hidden;
+  transition: max-height 420ms cubic-bezier(.22,.61,.36,1),
+    opacity 220ms ease, margin-top 420ms cubic-bezier(.22,.61,.36,1),
+    visibility 0s linear 0s;
+}
+.chapter-collapsible-content.collapsed {
+  display: block;
+  max-height: 0;
+  opacity: 0;
+  visibility: hidden;
+  margin-top: 0;
+  pointer-events: none;
+  transition: max-height 360ms cubic-bezier(.4,0,.2,1),
+    opacity 180ms ease, margin-top 360ms cubic-bezier(.4,0,.2,1),
+    visibility 0s linear 360ms;
+}
