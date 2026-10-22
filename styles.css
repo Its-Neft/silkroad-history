@@ -1935,29 +1935,32 @@ code, pre {
   display: inline-flex;
   align-items: center;
   gap: 0.52rem;
-  min-height: 42px;
-  padding: 0.58rem 0.82rem;
-  border: 1px solid rgba(205, 156, 62, 0.68);
-  border-radius: 999px;
-  background: linear-gradient(135deg, #bb7a35, #8f4b22);
-  color: #fff8e9;
-  box-shadow: 0 10px 25px rgba(52, 27, 10, 0.28);
-  font: 700 0.74rem var(--font-mono);
-  letter-spacing: 0.025em;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--gold-primary);
+  box-shadow: none;
+  font: inherit;
   text-decoration: none;
-  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  transition: transform 180ms ease, filter 180ms ease;
   visibility: visible !important;
   opacity: 1 !important;
 }
 
 .coffee-float:hover,
 .coffee-float:focus-visible {
-  color: #fff;
-  border-bottom-color: rgba(255,255,255,.6);
-  transform: translateY(-3px);
+  color: var(--gold-light);
+  transform: scale(1.12);
   filter: saturate(1.12);
-  box-shadow: 0 14px 30px rgba(52, 27, 10, 0.36);
 }
+
+.coffee-float.is-dragging { cursor: grabbing; transform: scale(1.08); }
 
 .coffee-float:focus-visible {
   outline: 2px solid var(--gold-light);
@@ -1967,27 +1970,24 @@ code, pre {
 .coffee-float-icon {
   display: grid;
   place-items: center;
-  width: 1.4rem;
-  height: 1.4rem;
-  border-radius: 50%;
-  background: rgba(255,255,255,.18);
-  font-size: 0.95rem;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  font-size: 1.75rem;
+  line-height: 1;
 }
 
 @media (max-width: 640px) {
   .coffee-float {
     right: 0.78rem;
-    left: auto;
     bottom: 5.1rem;
-    min-height: 40px;
-    padding: 0.55rem 0.68rem;
+    width: 42px;
+    height: 42px;
     z-index: 2147483000;
   }
 
   .coffee-float-label {
-    display: inline;
-    white-space: nowrap;
-    font-size: .68rem;
+    display: none;
   }
 }
 

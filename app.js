@@ -34,15 +34,47 @@ function initCoffeeSupport() {
   const coffee = document.querySelector('.coffee-float');
   if (!coffee) return;
   coffee.style.setProperty('position', 'fixed', 'important');
-  coffee.style.setProperty('right', '1rem', 'important');
-  coffee.style.setProperty('left', 'auto', 'important');
-  coffee.style.setProperty('bottom', '5.6rem', 'important');
+  const stored = localStorage.getItem('sro_coffee_position');
+  if (stored) {
+    try {
+      const position = JSON.parse(stored);
+      coffee.style.setProperty('left', `${position.left}px`, 'important');
+      coffee.style.setProperty('top', `${position.top}px`, 'important');
+      coffee.style.setProperty('right', 'auto', 'important');
+      coffee.style.setProperty('bottom', 'auto', 'important');
+    } catch { localStorage.removeItem('sro_coffee_position'); }
+  }
+  if (!stored) {
+    coffee.style.setProperty('right', '1rem', 'important');
+    coffee.style.setProperty('left', 'auto', 'important');
+    coffee.style.setProperty('bottom', '5.6rem', 'important');
+  }
   coffee.style.setProperty('z-index', '2147483000', 'important');
   coffee.style.setProperty('display', 'inline-flex', 'important');
   coffee.style.setProperty('visibility', 'visible', 'important');
   coffee.style.setProperty('opacity', '1', 'important');
   coffee.style.setProperty('pointer-events', 'auto', 'important');
   document.body.appendChild(coffee);
+
+  let dragging = false; let moved = false; let offsetX = 0; let offsetY = 0;
+  coffee.addEventListener('pointerdown', (event) => {
+    const rect = coffee.getBoundingClientRect();
+    dragging = true; moved = false; offsetX = event.clientX - rect.left; offsetY = event.clientY - rect.top;
+    coffee.classList.add('is-dragging'); coffee.setPointerCapture?.(event.pointerId); event.preventDefault();
+  });
+  coffee.addEventListener('pointermove', (event) => {
+    if (!dragging) return;
+    const left = Math.max(6, Math.min(window.innerWidth - coffee.offsetWidth - 6, event.clientX - offsetX));
+    const top = Math.max(6, Math.min(window.innerHeight - coffee.offsetHeight - 6, event.clientY - offsetY));
+    if (Math.abs(event.movementX) + Math.abs(event.movementY) > 1) moved = true;
+    coffee.style.setProperty('left', `${left}px`, 'important'); coffee.style.setProperty('top', `${top}px`, 'important');
+    coffee.style.setProperty('right', 'auto', 'important'); coffee.style.setProperty('bottom', 'auto', 'important');
+  });
+  coffee.addEventListener('pointerup', (event) => {
+    if (!dragging) return; dragging = false; coffee.classList.remove('is-dragging'); coffee.releasePointerCapture?.(event.pointerId);
+    if (moved) { const rect = coffee.getBoundingClientRect(); localStorage.setItem('sro_coffee_position', JSON.stringify({ left: Math.round(rect.left), top: Math.round(rect.top) })); }
+  });
+  coffee.addEventListener('pointercancel', () => { dragging = false; coffee.classList.remove('is-dragging'); });
 }
 
 // 0. Selector de idioma progresivo (se incorpora un idioma por entrega)
