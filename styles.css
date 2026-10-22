@@ -269,17 +269,6 @@ li {
   margin-bottom: 0.6rem !important;
 }
 
-.apa-keywords {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  font-family: var(--font-mono);
-}
-
-.apa-keywords span {
-  color: var(--gold-primary);
-  font-weight: 600;
-}
-
 /* Citas en Bloque y Testimonios */
 .apa-block-quote {
   margin: 1.5rem 0 1.5rem 1.8rem;
@@ -3076,8 +3065,6 @@ html, body, .navbar, .sidebar, .article-section, .apa-abstract-box, .callout-box
 :root:not([data-theme="light"]) .article-section li { color: var(--text-secondary); }
 :root:not([data-theme="light"]) .apa-abstract-label,
 :root:not([data-theme="light"]) .callout-title { color: #e1b85e; }
-:root:not([data-theme="light"]) .apa-keywords { color: #9eacbc; }
-:root:not([data-theme="light"]) .apa-keywords span { color: #e0b65b; }
 :root:not([data-theme="light"]) .data-table td { color: #c5ced9; }
 :root:not([data-theme="light"]) .data-table tr:nth-child(even) td { background: rgba(255,255,255,.025); }
 :root:not([data-theme="light"]) .callout-box { border-color: rgba(210,168,79,.3); }
